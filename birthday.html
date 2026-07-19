@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Gaby yang Spesial 💌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-bg);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- Layar Awal --- */
+        #start-screen {
+            position: absolute;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #open-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid white;
+            border-radius: 50px;
+            color: #d81b60;
+            cursor: pointer;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        #open-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        /* --- Konten Utama --- */
+        #main-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        /* Desain Kartu Glassmorphism (Sesuai Gambar) */
+        .card {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 192, 203, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 40px;
+            max-width: 450px;
+            text-align: center;
+            margin-top: 10px; /* Jarak dirapatkan ke kue */
+            transform: translateY(50px);
+            animation: slideUp 1s forwards 1s;
+            opacity: 0;
+        }
+
+        .card h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d81b60;
+            font-size: 3.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .card p {
+            color: #333;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --- KUE YANG SUDAH DIHIAS --- */
+        .cake-container {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            transform: scale(0);
+            animation: popIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.5s;
+        }
+
+        @keyframes popIn {
+            to { transform: scale(1); }
+        }
+
+        .cake {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 180px; /* Lebih tinggi sedikit */
+        }
+
+        /* Base Roti Kue (Warna Pink Bolu) */
+        .layer {
+            position: absolute;
+            background: linear-gradient(to right, #ffb6c1, #ff9a9e);
+            border-radius: 8px;
+            box-shadow: inset 0 -4px 10px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .layer-bottom { width: 200px; height: 60px; bottom: 0; left: 0; }
+        .layer-middle { width: 160px; height: 60px; bottom: 60px; left: 20px; }
+        .layer-top { width: 120px; height: 60px; bottom: 120px; left: 40px; }
+
+        /* Coklat Lumer (Icing) */
+        .icing {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 16px; 
+            background: linear-gradient(to bottom, #59331b, #452613); 
+            border-radius: 8px 8px 0 0;
+            z-index: 1;
+        }
+
+        .drip {
+            position: absolute;
+            top: 10px;
+            width: 16px;
+            background: linear-gradient(to bottom, #452613, #3a1f0f);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Cherry Hiasan */
+        .cherry {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+            border-radius: 50%;
+            top: -12px;
+            z-index: 2;
+            box-shadow: 2px 4px 5px rgba(0,0,0,0.2);
+        }
+
+        .cherry::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 20px;
+            border: solid 2px transparent;
+            border-top-color: #2e7d32;
+            border-radius: 50%;
+            top: -15px;
+            left: 5px;
+            transform: rotate(20deg);
+        }
+
+        /* Meses Warna-warni (Menggunakan trik Box-Shadow) */
+        .sprinkles {
+            position: absolute;
+            width: 6px;
+            height: 3px;
+            border-radius: 3px;
+            background: #ffeb3b; 
+            z-index: 2;
+        }
+
+        .s1 {
+            top: 30px; left: 10px;
+            box-shadow: 
+                25px 15px 0 #00bcd4,
+                55px 5px 0 #fff,
+                85px 15px 0 #4caf50;
+            transform: rotate(15deg);
+        }
+
+        .s2 {
+            top: 35px; left: 15px;
+            box-shadow: 
+                35px -5px 0 #e91e63,
+                70px 10px 0 #ff9800,
+                115px 0 0 #fff;
+            transform: rotate(-15deg);
+        }
+
+        .s3 {
+            top: 35px; left: 20px;
+            box-shadow: 
+                40px 15px 0 #cddc39,
+                80px -5px 0 #03a9f4,
+                120px 12px 0 #fff,
+                150px 0 0 #ff5722;
+            transform: rotate(25deg);
+        }
+
+        /* Lilin Garis-garis */
+        .candle {
+            position: absolute;
+            width: 14px;
+            height: 45px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #fff,
+                #fff 4px,
+                #ff4757 4px,
+                #ff4757 8px
+            );
+            bottom: 180px;
+            left: 93px;
+            border-radius: 3px;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Api Lilin */
+        .flame {
+            position: absolute;
+            width: 16px;
+            height: 28px;
+            background: #ff9d00;
+            border-radius: 50% 50% 20% 20%;
+            bottom: 48px;
+            left: -1px;
+            box-shadow: 0 0 20px #ff9d00, 0 0 40px #ff9d00;
+            animation: flicker 0.3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: rotate(-2deg) scale(0.9); opacity: 0.9; }
+            100% { transform: rotate(2deg) scale(1.1); opacity: 1; box-shadow: 0 0 25px #ff9d00, 0 0 50px #ff9d00, 0 0 70px #ff9d00; }
+        }
+
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="start-screen">
+        <button id="open-btn">Ada sesuatu untukmu... Buka ya! 💌</button>
+    </div>
+
+    <div id="main-content">
+        <audio id="bg-music" loop>
+            <source src="birthday_song.mp3" type="audio/mpeg">
+        </audio>
+
+        <canvas id="confetti-canvas"></canvas>
+
+        <div class="cake-container">
+            <div class="cake">
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                
+                <div class="layer layer-top">
+                    <div class="cherry" style="left: 15px;"></div>
+                    <div class="cherry" style="right: 15px;"></div>
+                    
+                    <div class="icing">
+                        <div class="drip" style="left: 10px; height: 25px;"></div>
+                        <div class="drip" style="left: 35px; height: 15px;"></div>
+                        <div class="drip" style="left: 60px; height: 32px;"></div>
+                        <div class="drip" style="left: 85px; height: 18px;"></div>
+                    </div>
+                    <div class="sprinkles s1"></div>
+                </div>
+                
+                <div class="layer layer-middle">
+                    <div class="icing">
+                        <div class="drip" style="left: 15px; height: 28px;"></div>
+                        <div class="drip" style="left: 45px; height: 15px;"></div>
+                        <div class="drip" style="left: 80px; height: 35px;"></div>
+                        <div class="drip" style="left: 115px; height: 22px;"></div>
+                    </div>
+                    <div class="sprinkles s2"></div>
+                </div>
+                
+                <div class="layer layer-bottom">
+                    <div class="icing">
+                        <div class="drip" style="left: 20px; height: 35px;"></div>
+                        <div class="drip" style="left: 65px; height: 20px;"></div>
+                        <div class="drip" style="left: 110px; height: 45px;"></div>
+                        <div class="drip" style="left: 155px; height: 25px;"></div>
+                    </div>
+                    <div class="sprinkles s3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h1>Selamat Ulang Tahun!</h1>
+            <p>
+                Gabyyyyyyy selamat ulang tahun yaa!!<br>
+                Semoga sehat selalu dan panjang umur, semoga semua yang kamu cita citakan dalam hidup bisa tercapai, maafin aku ya bikin kamu marah ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const openBtn = document.getElementById('open-btn');
+        const startScreen = document.getElementById('start-screen');
+        const mainContent = document.getElementById('main-content');
+        const bgMusic = document.getElementById('bg-music');
+
+        openBtn.addEventListener('click', () => {
+            startScreen.style.display = 'none';
+            mainContent.style.display = 'flex';
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+            }, 100);
+            bgMusic.play();
+            startConfetti();
+        });
+
+        // Script Confetti
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const confettiCount = 150;
+            const confetti = [];
+            const colors = ['#ff69b4', '#ff1493', '#ffc0cb', '#fff', '#ffd700'];
+
+            for (let i = 0; i < confettiCount; i++) {
+                confetti.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    w: Math.random() * 10 + 5,
+                    h: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vy: Math.random() * 3 + 2,
+                    vx: Math.random() * 2 - 1,
+                    rot: Math.random() * 360,
+                    rotSpeed: Math.random() * 5 - 2.5
+                });
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confetti.forEach((c) => {
+                    ctx.save();
+                    ctx.translate(c.x + c.w / 2, c.y + c.h / 2);
+                    ctx.rotate((c.rot * Math.PI) / 180);
+                    ctx.fillStyle = c.color;
+                    ctx.fillRect(-c.w / 2, -c.h / 2, c.w, c.h);
+                    ctx.restore();
+
+                    c.y += c.vy;
+                    c.x += c.vx;
+                    c.rot += c.rotSpeed;
+
+                    if (c.y > canvas.height) {
+                        c.y = -20;
+                        c.x = Math.random() * canvas.width;
+                    }
+                });
+                requestAnimationFrame(render);
+            }
+            render();
+        }
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            if(canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
+    </script>
+</body>
+</html>
